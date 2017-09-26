@@ -1,0 +1,165 @@
+---
+title: "BFAST - Fazenda Tanguro"
+author: "Ana Carolina"
+date: "4 de abril de 2017"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## Bibliotecas utilizadas
+```{r setup, include=T}
+library(bfast)
+library(tseries)
+library(DBEST)
+library(strucchange)
+```
+
+## Organização dos pontos
+```{r setup2, include=T}
+
+setwd("C:\\Users\\ana.andrade\\ownCloud\\series_temporais_tanguro\\csv")
+arquivos2=dir()
+arquivos=arquivos2[3:length(arquivos2)]
+#Lista com todos os csv
+pixels=list()
+for(i in 1:length(arquivos)){
+  
+  pixels[[i]]=read.csv(file= arquivos[i], header = T)
+  
+}
+
+
+
+
+#Lista com todos os pontos
+ts=list()
+a=1
+for (j in 1:length(arquivos)){
+for(i in 1:9){
+  
+  ts[[a]]=ts(as.numeric(pixels[[j]][i,4:395]), start= 2000.49, frequency = 23)
+  a=a+1
+}
+}
+
+#Retirar NA's
+i=1
+a=1
+b=1
+K=1
+for(i in 1:length(ts)){
+  
+for(j in 1:392){
+  if(is.na(ts[[i]][j])){
+    if(is.na(ts[[i]][j-1])){
+      a=2
+    }else(a=1)
+    if(is.na(ts[[i]][j+1])){
+      b=2
+    }else(b=1)
+    ts[[i]][j]=mean(ts[[i]][j-a],ts[[i]][j+b])
+  } else(K=K+1)
+}
+}
+
+```
+
+
+## Alguns estudos de caso
+```{r setup3, include=T}
+
+#Titulos
+#titulos=c(rep("Seringa",9), rep("Floresta-Floresta",9), rep("Floresta-Floresta",9), rep("Pastagem-Soja",9), rep("Eucalipto",9), rep("Eucalipto",9), rep("Pastagem-Soja",9),  rep("Floresta-Floresta",9),  rep("Floresta-Floresta",9), rep("Pastagem-Soja e Milho",9), rep("Pastagem-Soja e Milho",9), rep("Seringa",9), rep("Seringa",9))
+
+#k=c(rep(1,9),rep(2,9),rep(3,9),rep(4,9),rep(5,9),rep(6,9),
+ #   rep(7,9),rep(8,9),rep(9,9),rep(10,9),rep(11,9),rep(12,9),rep(13,9))
+#g=rep(1:9,13)
+
+#for(i in 1:(length(arquivos)*9)){
+ # bb=bfast(ts[[i]], season = "harmonic", max.iter = 1)
+  
+  #t=paste0("Ponto ", substr(arquivos[k[i]], 15,19),".",g[i],": ",titulos[i])
+  #plot(bb, main=t)
+  
+  #}
+
+bb=bfast(ts[[68]], season = "harmonic", max.iter = 1)
+plot(bb, main="Pixel 24453: Floresta-Floresta")
+
+fs.nile <- Fstats(ts[[68]] ~ 1)
+plot(fs.nile)
+xx=breakpoints(fs.nile)
+n=length(xx$breakpoints)
+lines(breakpoints(fs.nile))
+
+DBEST.Fig5a <- DBEST(data=ts[[68]], data.type="cyclical", 
+                     seasonality=23, algorithm="change detection", 
+                     breakpoints.no=n, first.level.shift=0.1, 
+                     second.level.shift=0.2, duration=24, 
+                     distance.threshold="default", alpha=0.05, plot="on")
+
+
+bb=bfast(ts[[95]], season = "harmonic", max.iter = 1)
+plot(bb, main="Pixel 6581: Pastagem-Soja e Milho")
+
+fs.nile <- Fstats(ts[[95]] ~ 1)
+plot(fs.nile)
+xx=breakpoints(fs.nile)
+n=length(xx$breakpoints)
+lines(breakpoints(fs.nile))
+
+DBEST.Fig5a <- DBEST(data=ts[[95]], data.type="cyclical", 
+                     seasonality=23, algorithm="change detection", 
+                     breakpoints.no=n, first.level.shift=0.1, 
+                     second.level.shift=0.2, duration=24, 
+                     distance.threshold="default", alpha=0.05, plot="on")
+
+bb=bfast(ts[[32]], season = "harmonic", max.iter = 1)
+plot(bb, main="Pixel 20965: Pastagem-Soja")
+
+fs.nile <- Fstats(ts[[32]] ~ 1)
+plot(fs.nile)
+xx=breakpoints(fs.nile)
+n=length(xx$breakpoints)
+lines(breakpoints(fs.nile))
+
+DBEST.Fig5a <- DBEST(data=ts[[32]], data.type="cyclical", 
+                     seasonality=23, algorithm="change detection", 
+                     breakpoints.no=n, first.level.shift=0.1, 
+                     second.level.shift=0.2, duration=24, 
+                     distance.threshold="default", alpha=0.05, plot="on")
+
+bb=bfast(ts[[50]], season = "harmonic", max.iter = 1)
+plot(bb, main="Pixel 23190: Eucalipto")
+
+fs.nile <- Fstats(ts[[50]] ~ 1)
+plot(fs.nile)
+xx=breakpoints(fs.nile)
+n=length(xx$breakpoints)
+lines(breakpoints(fs.nile))
+
+DBEST.Fig5a <- DBEST(data=ts[[50]], data.type="cyclical", 
+                     seasonality=23, algorithm="change detection", 
+                     breakpoints.no=n, first.level.shift=0.1, 
+                     second.level.shift=0.2, duration=24, 
+                     distance.threshold="default", alpha=0.05, plot="on")
+
+bb=bfast(ts[[5]], season = "harmonic", max.iter = 1)
+plot(bb, main="Pixel 11083: Seringa")
+
+fs.nile <- Fstats(ts[[5]] ~ 1)
+plot(fs.nile)
+xx=breakpoints(fs.nile)
+n=length(xx$breakpoints)
+lines(breakpoints(fs.nile))
+
+DBEST.Fig5a <- DBEST(data=ts[[5]], data.type="cyclical", 
+                     seasonality=23, algorithm="change detection", 
+                     breakpoints.no=n, first.level.shift=0.1, 
+                     second.level.shift=0.2, duration=24, 
+                     distance.threshold="default", alpha=0.05, plot="on")
+
+
+ 
+```

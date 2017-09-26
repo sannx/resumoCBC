@@ -1,0 +1,44 @@
+---
+title: ""
+author: ""
+date: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Avaliação do algoritmo BFAST, aplicado à séries temporais MOD13Q1 NDVI,  para detectar mudanças de uso da terra na região nordeste do Mato-Grosso - Brasil
+
+<p style="text-align: center;">
+*Claudinei Oliveira-Santos, Sávio Salvarino Teles de Oliveira, Ana Carolina do Couto Andrade, Luís Rodrigues Baumann, Laerte Guimarães Ferreira*
+</p>
+
+<p style="text-align: justify;">
+A gestão eficiente e sustentável do território implica conhecer seu histórico e as mudanças ocorridas ao longo do tempo. Devido ao comportamento dinâmico das alterações na cobertura e uso da terra, a aquisição de informações por sistemas de sensoriamento remoto constitui-se em uma importante ferramenta para compreensão destes processos ao longo do tempo.
+Como as séries temporais de dados de vegetação obtidos por satélites são fortementes influenciadas pelas variações sazonais climáticas, os algoritmos de detecção de mudanças de regimes de séries temporais podem não detectar com acurácia as mudanças de usos da terra. Assim, o uso eficaz destas séries requer métodos automatizados e que levem em conta a escala sazonal, enquanto simultâneamente detectam mudanças bruscas na tendência da série temporal. O algoritmo BFAST (Breaks for Additive Seasonal and Trend) foi desenvolvido para esta finalidade e tem sido utilizado e avaliado em relação à detecção de mudanças de diferentes magnitudes (abruptas e graduais) e mudanças de direção na tendência interanual de alvos de tamanhos variados.
+Entretanto, ainda foi pouco avaliada a eficácia do BFAST, e impactos de seus parâmetros, no caso sazonalidade e H (tamanho mínimo do segmento da série temporal entre duas potenciais mudanças), em detectar mudanças em diversos tipos de conversões de uso da terra. No presente estudo foi avaliada a efetividade do BFAST em detectar mudanças em séries temporais de imagens MODIS NDVI (2000-2016), em diversos tipo de conversões de uso do solo, com vistas a se determinar a melhor configuração de parâmetros para cada tipo de conversão. Os impactos dos ruídos foram avaliados utilizando o filtro de wavelet. E para reduzir a sensibilidade do BFAST à mudanças de baixa magnitude, foi desenvolvida e avaliada uma adaptação do algoritmo, denominada BFASTa, a qual não considera o coeficiente angular. Analisou-se também se existem diferenças significativas em se utilizar o centróide ou a média de valores NDVI de uma determinada área.
+A área do estudo possui baixa variação edafoclimática, e está localizada na zona de transição entre os biomas Cerrado e Amazônia, Querência- MT. Essa região está inserida em uma das fronteiras agrícolas mais intensas do mundo atualmente, apresentando altas taxas de conversões de cobertura da terra, cenário favorável ao desenvolvimento do presente estudo.
+Foram selecionadas 62 amostras distribuídas em seis tipos de cobertura do solo: duas áreas controles (floresta e silvicultura-seringal) para avaliar os erros de comissão, e quatro áreas com diferentes mudanças de cobertura do solo (floresta-pastagem, pastagem-soja, soja-soja e milho, e soja-seringa), com o histórico de transições do uso conhecido. Cada amostra consistiu em aproximadamente 52 ha, compreendendo nove pixels do sensor MODIS.
+Para os séries de NDVI considerando o centróide e a média da área, os algoritmos BFAST e BFASTa foram executados para séries originais e filtradas com wavelets, com todos os parâmetros de sazonalidade (dummy, nenhuma e harmônica) e variando o H de 6 meses a 5 anos, em intervalos de seis meses, totalizando 240 combinações para cada pixel.
+A sazonalidade e o uso de centróide ou a média de NDVI não apresentaram efeito significativo na eficácia do método, de modo que, para as análises seguintes foi considerada a sazonalidade harmônica, padrão do algoritmo, e o NDVI do centróide. Um dos fatores que podem ter contribuído para estes resultados é a homogeneidade da área.
+O H, o filtro wavelet e o BFASTa tem forte impacto sobre a eficácia em detectar mudanças nas séries temporais de NDVI. Quanto menor o H, maior a sensibilidade do método à mudanças de pequena magnitude. Assim, o número de mudanças detectadas diminuiu com o aumento do H (H(1 ano)  = 277  e H(5 ano) = 58). A detecção de mudanças nas séries filtradas com wavelets foi 65% menor que nas séries originais, pois a suavização da série remove ruídos e reduz a detecção de mudanças de baixa magnitudes.
+Nas áreas controles, floresta e seringal, onde não houveram mudanças antrópicas durante o período avaliado, o algoritmo apresentou boa acurácia. Para a floresta, a eficácia média foi de 98%, havendo alguns erros de comissões para os H de seis meses e um ano, provavelmente relacionadas a variações na sazonalidade climática, ou a ruídos, haja vista que o BFAST para série filtrada apresentou 100% de eficácia. Para o seringal, a eficácia foi menor, havendo um maior número de falsos positivos, onde novamente o BFAST com as séries filtradas foi mais eficiente (83%), sugerindo que ao considerar o coeficiente angular o algoritmo se torna mais robusto à variações no clima. Essas áreas de seringa tem alta amplitude de sazonalidade no NDVI, comparada a floresta nativa, pois durante a estação seca perdem a maior de suas folhas, o que contribui para falsos positivos em combinações sensíveis à mudanças de baixa magnitude. 
+Nas áreas com conversões de uso, os algoritmos foram menos eficazes, sendo afetados principalmente por erros de comissão. A probabilidade de uma mudança detectada ser verdadeira variou em função do tipo de conversão e dos parâmetros já descritos. As melhores combinações foram (1) para mudanças de magnitude alta como transição floresta - pastagem: BFASTa + H(alto) + Wavelets, (2) mudanças de magnitude média como transição pastagem - soja: BFASTa + H(baixo - médio) + Wavelets e (3) mudanças de magnitude baixa como transição soja - soja e milho: BFASTa + H( médio) + Wavelets.
+</p>
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

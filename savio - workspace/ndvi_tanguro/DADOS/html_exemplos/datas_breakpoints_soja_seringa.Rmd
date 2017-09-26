@@ -1,0 +1,123 @@
+---
+
+title: "datas_quebras"
+author: "Oliveira-Santos, C"
+date: "7 de abril de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r pressure, echo=FALSE, fig.align='center', fig.width=15, fig.height=7, message=FALSE, warning=FALSE}
+#################################################################################
+#################################################################################
+#pacotes
+library(bfast)
+library(DBEST)
+library(strucchange)
+
+#########################################
+#########################################
+
+setwd("H:\\LapigDrive\\series_temporais_tanguro\\DADOS\\soja_seringa")
+arquivos = Sys.glob("*.csv")
+
+#Lista com todos os csv
+pixels = list()
+for (i in 1:length(arquivos)) {
+  
+  pixels[[i]] = read.csv(file = arquivos[i], header = T)
+  
+} 
+
+#Lista com todos os pontos centrais
+ts = list()
+a = 1
+for (j in 1:length(arquivos)) {
+  
+  ts[[j]] = ts(as.numeric(pixels[[j]][5,4:395]), start = 2000.49, frequency = 23)
+  
+} 
+
+#Retirar NA's
+i = 1
+a = 1
+b = 1
+for (i in 1:length(ts)) {
+  
+  for (j in 1:392) {
+    if (is.na(ts[[i]][j])) {
+      if (is.na(ts[[i]][j - 1])) {
+        a = 2
+      } else (a = 1)
+      if (is.na(ts[[i]][j + 1])) {
+        b = 2
+      } else (b = 1)
+      ts[[i]][j] = mean(ts[[i]][j - a],ts[[i]][j + b])
+    } else (c(i,j)) #print(c(i,j)))
+  } 
+} 
+
+
+#Bfast e Dbest
+#titulos = c(rep("Seringa",9), rep("Floresta-Floresta",9), rep("Floresta-Floresta",9), 
+#         rep("Pastagem-Soja",9), rep("Eucalipto",9), rep("Eucalipto",9), 
+#        rep("Pastagem-Soja",9),  rep("Floresta-Floresta",9),  rep("Floresta-Floresta",9), 
+#       rep("Pastagem-Soja e Milho",9), rep("Pastagem-Soja e Milho",9), rep("Seringa",9),
+#      rep("Seringa",9))
+
+# titulos = c("Seringa","Floresta","Floresta","Pastagem-Soja","Eucalipto",
+#           "Eucalipto","Pastagem-Soja","Floresta","Floresta","Pastagem-Soja e Milho",
+#           "Pastagem-Soja e Milho", "Seringa", "Seringa")
+# length(titulos)
+
+#k = c(rep(1,9),rep(2,9),rep(3,9),rep(4,9),rep(5,9),rep(6,9),
+#  rep(7,9),rep(8,9),rep(9,9),rep(10,9),rep(11,9),rep(12,9),rep(13,9))
+
+#g = rep(1:9,length(arquivos))
+
+break_dbest = list()
+break_bfast = list()
+
+for (i in 1:length(arquivos)) {
+  break_dbest[[i]] = NA
+} 
+
+for (i in 1:(length(arquivos))) {
+  bb = bfast(ts[[i]], season = "harmonic", max.iter = 1)
+  
+  #t = paste0("Ponto ", substr(arquivos[i], 15,19),": ",titulos[i])
+  plot(bb, main = arquivos[i])#t)
+  
+  fs.nile <- Fstats(ts[[i]] ~ 1)
+  plot(fs.nile)
+  xx = breakpoints(fs.nile)
+  n = length(xx$breakpoints)
+  lines(breakpoints(fs.nile))
+  
+  print( paste0("dbest = ", arquivos[i]) )
+  
+  DBEST.Fig5a <- DBEST(data = ts[[i]], data.type = "cyclical", 
+                       seasonality = 23, algorithm = "change detection", 
+                       change.magnitude = 0.123, first.level.shift = 0.1, 
+                       second.level.shift = 0.2, duration = 23, 
+                       distance.threshold = "default", alpha = 0.05, plot = "on")
+  
+  
+  if (is.null(DBEST.Fig5a$Start) == T) {
+    break_dbest[[i]] = NA
+  } else (break_dbest[[i]] = DBEST.Fig5a$Start)
+  
+  
+  niter <- length(bb$output)
+  break_bfast[[i]] = bb$output[[niter]]$bp.Vt[[1]]
+
+} 
+
+# break_dbest
+# break_bfast
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
