@@ -1,0 +1,121 @@
+"H","Algoritmo","Acuracia","NBK"
+"01","BFASTa","Acerto",35
+"02","BFASTa","Acerto",35
+"03","BFASTa","Acerto",29
+"04","BFASTa","Acerto",26
+"05","BFASTa","Acerto",27
+"06","BFASTa","Acerto",28
+"07","BFASTa","Acerto",27
+"08","BFASTa","Acerto",33
+"09","BFASTa","Acerto",29
+"10","BFASTa","Acerto",24
+"01","BFASTa","Comissão",158
+"02","BFASTa","Comissão",96
+"03","BFASTa","Comissão",76
+"04","BFASTa","Comissão",72
+"05","BFASTa","Comissão",55
+"06","BFASTa","Comissão",49
+"07","BFASTa","Comissão",43
+"08","BFASTa","Comissão",31
+"09","BFASTa","Comissão",31
+"10","BFASTa","Comissão",38
+"01","BFASTa","Omissão",47
+"02","BFASTa","Omissão",52
+"03","BFASTa","Omissão",60
+"04","BFASTa","Omissão",63
+"05","BFASTa","Omissão",62
+"06","BFASTa","Omissão",61
+"07","BFASTa","Omissão",62
+"08","BFASTa","Omissão",56
+"09","BFASTa","Omissão",60
+"10","BFASTa","Omissão",65
+"01","BFASTa Wavelet","Acerto",26
+"02","BFASTa Wavelet","Acerto",25
+"03","BFASTa Wavelet","Acerto",23
+"04","BFASTa Wavelet","Acerto",23
+"05","BFASTa Wavelet","Acerto",27
+"06","BFASTa Wavelet","Acerto",23
+"07","BFASTa Wavelet","Acerto",26
+"08","BFASTa Wavelet","Acerto",26
+"09","BFASTa Wavelet","Acerto",31
+"10","BFASTa Wavelet","Acerto",30
+"01","BFASTa Wavelet","Comissão",120
+"02","BFASTa Wavelet","Comissão",63
+"03","BFASTa Wavelet","Comissão",60
+"04","BFASTa Wavelet","Comissão",56
+"05","BFASTa Wavelet","Comissão",48
+"06","BFASTa Wavelet","Comissão",41
+"07","BFASTa Wavelet","Comissão",37
+"08","BFASTa Wavelet","Comissão",36
+"09","BFASTa Wavelet","Comissão",24
+"10","BFASTa Wavelet","Comissão",24
+"01","BFASTa Wavelet","Omissão",57
+"02","BFASTa Wavelet","Omissão",64
+"03","BFASTa Wavelet","Omissão",66
+"04","BFASTa Wavelet","Omissão",66
+"05","BFASTa Wavelet","Omissão",62
+"06","BFASTa Wavelet","Omissão",66
+"07","BFASTa Wavelet","Omissão",63
+"08","BFASTa Wavelet","Omissão",63
+"09","BFASTa Wavelet","Omissão",58
+"10","BFASTa Wavelet","Omissão",59
+"01","BFAST","Acerto",34
+"02","BFAST","Acerto",36
+"03","BFAST","Acerto",30
+"04","BFAST","Acerto",29
+"05","BFAST","Acerto",26
+"06","BFAST","Acerto",27
+"07","BFAST","Acerto",25
+"08","BFAST","Acerto",31
+"09","BFAST","Acerto",28
+"10","BFAST","Acerto",28
+"01","BFAST","Comissão",159
+"02","BFAST","Comissão",145
+"03","BFAST","Comissão",95
+"04","BFAST","Comissão",73
+"05","BFAST","Comissão",64
+"06","BFAST","Comissão",56
+"07","BFAST","Comissão",45
+"08","BFAST","Comissão",33
+"09","BFAST","Comissão",35
+"10","BFAST","Comissão",32
+"01","BFAST","Omissão",54
+"02","BFAST","Omissão",53
+"03","BFAST","Omissão",60
+"04","BFAST","Omissão",63
+"05","BFAST","Omissão",62
+"06","BFAST","Omissão",61
+"07","BFAST","Omissão",64
+"08","BFAST","Omissão",59
+"09","BFAST","Omissão",62
+"10","BFAST","Omissão",62
+"01","BFAST Wavelet","Acerto",23
+"02","BFAST Wavelet","Acerto",25
+"03","BFAST Wavelet","Acerto",28
+"04","BFAST Wavelet","Acerto",28
+"05","BFAST Wavelet","Acerto",28
+"06","BFAST Wavelet","Acerto",26
+"07","BFAST Wavelet","Acerto",27
+"08","BFAST Wavelet","Acerto",25
+"09","BFAST Wavelet","Acerto",26
+"10","BFAST Wavelet","Acerto",25
+"01","BFAST Wavelet","Comissão",10
+"02","BFAST Wavelet","Comissão",61
+"03","BFAST Wavelet","Comissão",41
+"04","BFAST Wavelet","Comissão",39
+"05","BFAST Wavelet","Comissão",36
+"06","BFAST Wavelet","Comissão",35
+"07","BFAST Wavelet","Comissão",30
+"08","BFAST Wavelet","Comissão",29
+"09","BFAST Wavelet","Comissão",22
+"10","BFAST Wavelet","Comissão",20
+"01","BFAST Wavelet","Omissão",69
+"02","BFAST Wavelet","Omissão",65
+"03","BFAST Wavelet","Omissão",64
+"04","BFAST Wavelet","Omissão",64
+"05","BFAST Wavelet","Omissão",64
+"06","BFAST Wavelet","Omissão",65
+"07","BFAST Wavelet","Omissão",64
+"08","BFAST Wavelet","Omissão",65
+"09","BFAST Wavelet","Omissão",64
+"10","BFAST Wavelet","Omissão",65
