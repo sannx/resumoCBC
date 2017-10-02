@@ -120,15 +120,9 @@ bfast=rbind(blMelt,blwMelt,nbMelt,nbwMelt)
 
 write.csv(bfast, file = 'L:\\DATASAN\\BfastFigura4.csv', row.names = FALSE)
 
-
-library(ggplot2)
 bfast <- read.csv('/hds/dados_work/GitHub/resumoCBC/BfastFigura4.csv')
-names(bfast)
+head(bfast)
 sapply(bfast, class)
-bfast$H <- as.numeric(bfast$H)
-bfast$Algoritmo <- as.character(bfast$Algoritmo)
-bfast$Acuracia <- as.character(bfast$Acuracia)
-bfast$NBK <- as.character(bfast$NBK)
 
 ggplot(data = bfast, aes(x = H, y = NBK, colour = Acuracia))+
   geom_point()+
