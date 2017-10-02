@@ -1,8 +1,9 @@
 ---
-title: ""
-author: ""
-date: ""
-output: html_document
+title: ''
+author: ''
+date: ''
+output:
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
